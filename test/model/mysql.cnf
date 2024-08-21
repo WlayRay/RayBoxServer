@@ -1,0 +1,13 @@
+ip=localhost
+port=3306
+username=root
+password=123456
+dbname=raybox
+# 数据库字符集，utf8mb4是默认字符集
+charset=utf8mb4
+initSize=10
+maxSize=1024
+# 最长空闲时间，单位是秒
+maxIdleTime=60
+# 连接超时时间，单位是毫秒
+connectionTimeout=100

@@ -1,0 +1,87 @@
+name: chat_server
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    volumes:
+      - ./init-scripts:/docker-entrypoint-initdb.d
+      - mysql_vol:/var/lib/mysql
+    ports:
+      - 6033:3306
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    volumes:
+      - redis_vol:/data
+    ports:
+      - 3697:6379
+
+  server1:
+    container_name: server1
+    environment:
+      - TARGET_APP=server
+    build:
+      context: .
+      dockerfile: dockerfile
+    command: [ "0.0.0.0", "6000" ]
+    volumes:
+      - server1_vol:/chat_server/logs
+    ports:
+      - 6000
+    depends_on:
+      - mysql
+      - redis
+
+  server2:
+    container_name: server2
+    environment:
+      - TARGET_APP=server
+    build:
+      context: .
+      dockerfile: dockerfile
+    command: [ "0.0.0.0", "6001" ]
+    volumes:
+      - server2_vol:/chat_server/logs
+    ports:
+      - 6001
+    depends_on:
+      - mysql
+      - redis
+
+  server3:
+    container_name: server3
+    environment:
+      - TARGET_APP=server
+    build:
+      context: .
+      dockerfile: dockerfile
+    command: [ "0.0.0.0", "6002" ]
+    volumes:
+      - server3_vol:/chat_server/logs
+    ports:
+      - 6002
+    depends_on:
+      - mysql
+      - redis
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - 8004:8003
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./tcp.d:/etc/nginx/tcp.d
+    depends_on:
+      - mysql
+      - redis
+
+volumes:
+  mysql_vol: {}
+  redis_vol: {}
+  server1_vol: {}
+  server2_vol: {}
+  server3_vol: {}

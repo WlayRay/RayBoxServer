@@ -1,0 +1,1 @@
+add_executable(testlogger testlogger.cpp ${CMAKE_SOURCE_DIR}/src/log/logger.cpp)

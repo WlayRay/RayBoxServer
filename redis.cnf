@@ -1,0 +1,7 @@
+ip=localhost
+port=6379
+size=2
+# 最长空闲时间，单位是毫秒
+connection_idle_time=30000
+# 连接超时时间，单位是毫秒
+wait_timeout=3000
