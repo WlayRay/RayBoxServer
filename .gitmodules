@@ -1,9 +1,9 @@
-[submodule "dependencies/dependencies/muduo"]
-	path = dependencies/dependencies/muduo
+[submodule "dependencies/muduo"]
+	path = dependencies/muduo
 	url = https://github.com/chenshuo/muduo.git
-[submodule "dependencies/dependencies/hiredis"]
-	path = dependencies/dependencies/hiredis
+[submodule "dependencies/hiredis"]
+	path = dependencies/hiredis
 	url = https://github.com/redis/hiredis.git
-[submodule "dependencies/dependencies/redis-plus-plus"]
-	path = dependencies/dependencies/redis-plus-plus
+[submodule "dependencies/redis-plus-plus"]
+	path = dependencies/redis-plus-plus
 	url = https://github.com/sewenew/redis-plus-plus.git
